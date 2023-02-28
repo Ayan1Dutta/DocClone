@@ -7,7 +7,7 @@ const cors= require('cors');
 const PORT=process.env.PORT || 3001
 
 require('dotenv').config();
-mongoose.connect(process.env.MONGO, {
+mongoose.connect("mongodb+srv://Ayandutta:6Cxg5eLBpwcc8NrA@cluster0.oraz1lv.mongodb.net/hotelBooking?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

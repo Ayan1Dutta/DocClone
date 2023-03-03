@@ -1,6 +1,6 @@
 const express = require('express');
 const http =require('http');
-const {Server} = require('socket.io');
+const socketio = require('socket.io');
 const mongoose = require('mongoose');
 const Document = require("./Document")
 const cors= require('cors');
@@ -17,17 +17,18 @@ mongoose.connect("mongodb+srv://Ayandutta:6Cxg5eLBpwcc8NrA@cluster0.oraz1lv.mong
 }).catch(err=>console.log(err));
 
 const app=express();
+app.use(cors());
 const server = http.createServer(app);
-const io= new Server(server,{
-  cors: {
-    origin: process.env.BASE_URL,
-    methods: ["GET", "POST"],
-  },
+const io= socketio(server,{
+  cors:{
+    origin:"*",
+    methods:["GET","POST"]
+  }
 })
-
 const defaultValue = ""
 
 io.on("connection", socket => {
+  console.log("bggh");
   socket.on("get-document", async documentId => {
     const document = await findOrCreateDocument(documentId)
     socket.join(documentId)
@@ -53,4 +54,5 @@ async function findOrCreateDocument(id) {
 
 
 server.listen(PORT,()=>{
+  console.log("server is listening")
 })

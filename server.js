@@ -4,7 +4,7 @@ const socketio = require('socket.io');
 const mongoose = require('mongoose');
 const Document = require("./Document")
 const cors= require('cors');
-const PORT=process.env.PORT || 3001
+const PORT=process.env.PORT 
 
 require('dotenv').config();
 mongoose.connect("mongodb+srv://Ayandutta:6Cxg5eLBpwcc8NrA@cluster0.oraz1lv.mongodb.net/hotelBooking?retryWrites=true&w=majority", {
